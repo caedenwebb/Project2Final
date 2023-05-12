@@ -1,9 +1,8 @@
 from player import Player
 from gameboard import Gameboard
 from main import Ui_MainWindow
-from PyQt5 import QtCore, QtGui, QtWidgets
 
-def start(window: Ui_MainWindow) -> None:
+def start(objectsExist: bool, window: Ui_MainWindow, Gb, p1, p2) -> None:
     '''
     Function called when start button is pressed
     :param window: MainWindow object
@@ -11,9 +10,10 @@ def start(window: Ui_MainWindow) -> None:
     '''
 
     #initialize players and gameboard
-    Gb = Gameboard()
-    p1 = Player(window.P1Textbox.text(), 'X')
-    p2 = Player(window.P2Textbox.text(), 'O')
+    if (objectsExist == False):
+        Gb = Gameboard()
+        p1 = Player(window.P1Textbox.text(), 'X')
+        p2 = Player(window.P2Textbox.text(), 'O')
 
     #set Textboxes to be read only
     window.P1Textbox.setReadOnly(True)
@@ -38,15 +38,14 @@ def start(window: Ui_MainWindow) -> None:
 def reset(board: Gameboard, window: Ui_MainWindow, player1, player2) -> None:
     '''
     Function called when the reset button is pressed
+    :param board: Gameboard object
     :param window: MainWindow object
+    :param player1: Player 1 object
+    :param player2: PLayer 2 object
     :return: None
     '''
 
     #destroy player and gameboard objects
-
-    del board
-    del player1
-    del player2
 
     #reset player textboxes and gameboard buttons
 
@@ -75,7 +74,7 @@ def reset(board: Gameboard, window: Ui_MainWindow, player1, player2) -> None:
 
     #change reset button into start button
     window.SRButton.setText('Start')
-    window.SRButton.clicked.connect(lambda:start(window))
+    window.SRButton.clicked.connect(lambda:start(True, window, board, player1, player2))
 
     #reset round counter
     window.RoundNum.setText('Round: 1')
@@ -98,57 +97,57 @@ def mark_board(Gb: Gameboard, player: Player, window: Ui_MainWindow, pos: int, a
     #mark board
     round_incomplete = True
     if (pos == 0):
-        window.B0Button.setText(player.char)
+        window.B0Button.setText(player.get_character())
         window.B0Button.setEnabled(False)
-        Gb.mark_gameboard(0, player.char)
+        Gb.mark_gameboard(0, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 1):
-        window.B1Button.setText(player.char)
+        window.B1Button.setText(player.get_character())
         window.B1Button.setEnabled(False)
-        Gb.mark_gameboard(1, player.char)
+        Gb.mark_gameboard(1, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 2):
-        window.B2Button.setText(player.char)
+        window.B2Button.setText(player.get_character())
         window.B2Button.setEnabled(False)
-        Gb.mark_gameboard(2, player.char)
+        Gb.mark_gameboard(2, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 3):
-        window.B3Button.setText(player.char)
+        window.B3Button.setText(player.get_character())
         window.B3Button.setEnabled(False)
-        Gb.mark_gameboard(3, player.char)
+        Gb.mark_gameboard(3, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 4):
-        window.B4Button.setText(player.char)
+        window.B4Button.setText(player.get_character())
         window.B4Button.setEnabled(False)
-        Gb.mark_gameboard(4, player.char)
+        Gb.mark_gameboard(4, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 5):
-        window.B5Button.setText(player.char)
+        window.B5Button.setText(player.get_character())
         window.B5Button.setEnabled(False)
-        Gb.mark_gameboard(5, player.char)
+        Gb.mark_gameboard(5, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 6):
-        window.B6Button.setText(player.char)
+        window.B6Button.setText(player.get_character())
         window.B6Button.setEnabled(False)
-        Gb.mark_gameboard(6, player.char)
+        Gb.mark_gameboard(6, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 7):
-        window.B7Button.setText(player.char)
+        window.B7Button.setText(player.get_character())
         window.B7Button.setEnabled(False)
-        Gb.mark_gameboard(7, player.char)
+        Gb.mark_gameboard(7, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 8):
-        window.B8Button.setText(player.char)
+        window.B8Button.setText(player.get_character())
         window.B8Button.setEnabled(False)
-        Gb.mark_gameboard(8, player.char)
+        Gb.mark_gameboard(8, player)
         #spaces_open = spaces_open - 1
         #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
 
@@ -183,7 +182,7 @@ def mark_board(Gb: Gameboard, player: Player, window: Ui_MainWindow, pos: int, a
         window.B7Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 7, player, spaces_open))
         window.B8Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 8, player, spaces_open))
     else:
-        if (player.char == 'X'):
+        if (player == 'X'):
             window.B0Button.clicked.connect(lambda: mark_board(Gb, player, window, 0, altplayer, 9))
             window.B1Button.clicked.connect(lambda: mark_board(Gb, player, window, 1, altplayer, 9))
             window.B2Button.clicked.connect(lambda: mark_board(Gb, player, window, 2, altplayer, 9))

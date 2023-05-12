@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.SRButton.clicked.connect(lambda:control.start(self))
+        self.SRButton.clicked.connect(lambda:control.start(False, self, '', '', ''))
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
