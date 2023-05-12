@@ -62,3 +62,32 @@ class Gameboard:
         :return: A string representing the character at the specified position on the board.
         '''
         return self.__board[position]
+
+    def check_victory(self) -> str:
+        '''
+        Checks if either player has won the game or if the game has ended in a tie.
+
+        :return: Returns "X" if player X has won, "O" if player O has won, "TIE" if the game has ended in a tie, or "NO VICTORY" if the game is not yet over.
+        '''
+        # Check rows
+        for i in range(0, 9, 3):
+            if self.__board[i] == self.__board[i+1] == self.__board[i+2] and self.__board[i] != '':
+                return self.__board[i]
+
+        # Check columns
+        for i in range(3):
+            if self.__board[i] == self.__board[i+3] == self.__board[i+6] and self.__board[i] != '':
+                return self.__board[i]
+
+        # Check diagonals
+        if self.__board[0] == self.__board[4] == self.__board[8] and self.__board[0] != '':
+            return self.__board[0]
+        if self.__board[2] == self.__board[4] == self.__board[6] and self.__board[2] != '':
+            return self.__board[2]
+
+        # Check for tie
+        if '' not in self.__board:
+            return 'TIE'
+
+        # Game not over yet
+        return 'NO VICTORY'
