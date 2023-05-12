@@ -14,7 +14,7 @@ class Gameboard:
                         '', '', '']
         self.__round = 1
 
-    def mark_gameboard(self, player: player.Player, position: int) -> None:
+    def mark_gameboard(self, position: int, player: player.Player) -> None:
         '''
         Marks the gameboard on behalf of one player.
 
