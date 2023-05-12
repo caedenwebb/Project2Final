@@ -77,6 +77,9 @@ def reset(board: Gameboard, window: Ui_MainWindow, player1, player2) -> None:
     window.SRButton.setText('Start')
     window.SRButton.clicked.connect(lambda:start(window))
 
+    #reset round counter
+    window.RoundNum.setText('Round: 1')
+
 
     pass
 
@@ -88,44 +91,122 @@ def mark_board(Gb: Gameboard, player: Player, window: Ui_MainWindow, pos: int, a
     :return: None
     '''
     #mark board
+    round_incomplete = True
     if (pos == 0):
         window.B0Button.setText(player.char)
         window.B0Button.setEnabled(False)
+        Gb.mark_gameboard(0, player.char)
     if (pos == 1):
         window.B1Button.setText(player.char)
         window.B1Button.setEnabled(False)
+        Gb.mark_gameboard(1, player.char)
     if (pos == 2):
         window.B2Button.setText(player.char)
         window.B2Button.setEnabled(False)
+        Gb.mark_gameboard(2, player.char)
     if (pos == 3):
         window.B3Button.setText(player.char)
         window.B3Button.setEnabled(False)
+        Gb.mark_gameboard(3, player.char)
     if (pos == 4):
         window.B4Button.setText(player.char)
         window.B4Button.setEnabled(False)
+        Gb.mark_gameboard(4, player.char)
     if (pos == 5):
         window.B5Button.setText(player.char)
         window.B5Button.setEnabled(False)
+        Gb.mark_gameboard(5, player.char)
     if (pos == 6):
         window.B6Button.setText(player.char)
         window.B6Button.setEnabled(False)
+        Gb.mark_gameboard(6, player.char)
     if (pos == 7):
         window.B7Button.setText(player.char)
         window.B7Button.setEnabled(False)
+        Gb.mark_gameboard(7, player.char)
     if (pos == 8):
         window.B8Button.setText(player.char)
         window.B8Button.setEnabled(False)
+        Gb.mark_gameboard(8, player.char)
+
+    #check for victory or tie
+    if (Gb.check_victory() == 'X'):
+        enable_buttons(window)
+        clear_buttons(window)
+        round_incomplete = True
+    elif (Gb.check_victory() == 'O'):
+        enable_buttons(window)
+        clear_buttons(window)
+        round_incomplete = False
+    elif (Gb.check_victory() == 'NO VICTORY'):
+        pass
+    elif (Gb.check_victory() == 'TIE'):
+        enable_buttons(window)
+        clear_buttons(window)
+        round_incomplete = False
+    else:
+        pass
 
     #switch players
-    window.B0Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 0, player))
-    window.B1Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 1, player))
-    window.B2Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 2, player))
-    window.B3Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 3, player))
-    window.B4Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 4, player))
-    window.B5Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 5, player))
-    window.B6Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 6, player))
-    window.B7Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 7, player))
-    window.B8Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 8, player))
+    if (round_incomplete == True):
+        window.B0Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 0, player))
+        window.B1Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 1, player))
+        window.B2Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 2, player))
+        window.B3Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 3, player))
+        window.B4Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 4, player))
+        window.B5Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 5, player))
+        window.B6Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 6, player))
+        window.B7Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 7, player))
+        window.B8Button.clicked.connect(lambda:mark_board(Gb, altplayer, window, 8, player))
+    else:
+        if (player.char == 'X'):
+            window.B0Button.clicked.connect(lambda: mark_board(Gb, player, window, 0, altplayer))
+            window.B1Button.clicked.connect(lambda: mark_board(Gb, player, window, 1, altplayer))
+            window.B2Button.clicked.connect(lambda: mark_board(Gb, player, window, 2, altplayer))
+            window.B3Button.clicked.connect(lambda: mark_board(Gb, player, window, 3, altplayer))
+            window.B4Button.clicked.connect(lambda: mark_board(Gb, player, window, 4, altplayer))
+            window.B5Button.clicked.connect(lambda: mark_board(Gb, player, window, 5, altplayer))
+            window.B6Button.clicked.connect(lambda: mark_board(Gb, player, window, 6, altplayer))
+            window.B7Button.clicked.connect(lambda: mark_board(Gb, player, window, 7, altplayer))
+            window.B8Button.clicked.connect(lambda: mark_board(Gb, player, window, 8, altplayer))
+        else:
+            window.B0Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 0, player))
+            window.B1Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 1, player))
+            window.B2Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 2, player))
+            window.B3Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 3, player))
+            window.B4Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 4, player))
+            window.B5Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 5, player))
+            window.B6Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 6, player))
+            window.B7Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 7, player))
+            window.B8Button.clicked.connect(lambda: mark_board(Gb, altplayer, window, 8, player))
 
-
-    pass
+def enable_buttons(window):
+    window.B0Button.setEnabled(True)
+    window.B1Button.setEnabled(True)
+    window.B2Button.setEnabled(True)
+    window.B3Button.setEnabled(True)
+    window.B4Button.setEnabled(True)
+    window.B5Button.setEnabled(True)
+    window.B6Button.setEnabled(True)
+    window.B7Button.setEnabled(True)
+    window.B8Button.setEnabled(True)
+def disable_buttons(window):
+    window.B0Button.setEnabled(False)
+    window.B1Button.setEnabled(False)
+    window.B2Button.setEnabled(False)
+    window.B3Button.setEnabled(False)
+    window.B4Button.setEnabled(False)
+    window.B5Button.setEnabled(False)
+    window.B6Button.setEnabled(False)
+    window.B7Button.setEnabled(False)
+    window.B8Button.setEnabled(False)
+def clear_buttons(window):
+    window.B0Button.setText('')
+    window.B1Button.setText('')
+    window.B2Button.setText('')
+    window.B3Button.setText('')
+    window.B4Button.setText('')
+    window.B5Button.setText('')
+    window.B6Button.setText('')
+    window.B7Button.setText('')
+    window.B8Button.setText('')

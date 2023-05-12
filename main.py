@@ -108,7 +108,6 @@ class Ui_MainWindow(object):
         self.P1Score.setText(_translate("MainWindow", "0 pts"))
         self.P2Score.setText(_translate("MainWindow", "0 pts"))
 
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
