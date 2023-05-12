@@ -86,8 +86,13 @@ def reset(board: Gameboard, window: Ui_MainWindow, player1, player2) -> None:
 def mark_board(Gb: Gameboard, player: Player, window: Ui_MainWindow, pos: int, altplayer: Player, spaces_open: int) -> None:
     '''
     Function called when any of the buttons constituting the board are pressed
+    :param Gb: Gameboard object
+    :param player: Player whose turn it is
     :param window: MainWindow object
     :param pos: number representing which position on the board was clicked
+    :param altplayer: other player
+    :param spaces_open: spaces not marked
+    :
     :return: None
     '''
     #mark board
