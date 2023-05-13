@@ -2,6 +2,8 @@ from player import Player
 from gameboard import Gameboard
 from main import Ui_MainWindow
 
+
+
 def start(objectsExist: bool, window: Ui_MainWindow, Gb, p1, p2) -> None:
     '''
     Function called when start button is pressed
@@ -100,56 +102,56 @@ def mark_board(Gb: Gameboard, player: Player, window: Ui_MainWindow, pos: int, a
         window.B0Button.setText(player.get_character())
         window.B0Button.setEnabled(False)
         Gb.mark_gameboard(0, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 1):
         window.B1Button.setText(player.get_character())
         window.B1Button.setEnabled(False)
         Gb.mark_gameboard(1, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 2):
         window.B2Button.setText(player.get_character())
         window.B2Button.setEnabled(False)
         Gb.mark_gameboard(2, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 3):
         window.B3Button.setText(player.get_character())
         window.B3Button.setEnabled(False)
         Gb.mark_gameboard(3, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 4):
         window.B4Button.setText(player.get_character())
         window.B4Button.setEnabled(False)
         Gb.mark_gameboard(4, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 5):
         window.B5Button.setText(player.get_character())
         window.B5Button.setEnabled(False)
         Gb.mark_gameboard(5, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 6):
         window.B6Button.setText(player.get_character())
         window.B6Button.setEnabled(False)
         Gb.mark_gameboard(6, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 7):
         window.B7Button.setText(player.get_character())
         window.B7Button.setEnabled(False)
         Gb.mark_gameboard(7, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
     if (pos == 8):
         window.B8Button.setText(player.get_character())
         window.B8Button.setEnabled(False)
         Gb.mark_gameboard(8, player)
-        #spaces_open = spaces_open - 1
-        #print(f'{pos} spot clicked;{spaces_open} spaces remaining')
+        spaces_open = spaces_open - 1
+        print(f'{pos} spot clicked;{spaces_open} spaces remaining')
 
     #check for victory or tie
     if (Gb.check_victory() == 'X'):
